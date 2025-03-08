@@ -7,6 +7,9 @@ import xlrd
 
 print("Iniciando o nosso Robô...\n")
 
+#Criando um arquivo
+arquivo = open("Resultado.txt","w")
+
 dominios = []
 
 #Lendo do excel
@@ -28,7 +31,9 @@ for dominio in dominios:
     pesquisa.send_keys(Keys.RETURN)
     time.sleep(2)
     resultados = driver.find_elements(By.TAG_NAME,"strong")
-    print("Domínio %s %s" % (dominio, resultados[2].text))
+    texto = ("Domínio %s %s" % (dominio, resultados[2].text))
+    arquivo.write(texto + "\n")
 
+arquivo.close()
 time.sleep(2)
 driver.quit()
